@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/BuiBao3103/nodejs#readme",
   "dependencies": {
+    "dotenv": "^16.3.1",
     "express": "^4.18.2"
   },
   "devDependencies": {
