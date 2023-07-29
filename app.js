@@ -80,6 +80,36 @@ const deleteTour = (req, res) => {
     })
 }
 
+const getAllUsers = (req,res) =>{
+    res.status(500).json({
+        status:'error',
+        message:'This feature not define yet!'
+    })
+}
+const getUser = (req,res) =>{
+    res.status(500).json({
+        status:'error',
+        message:'This feature not define yet!'
+    })
+}
+const createUser = (req,res) =>{
+    res.status(500).json({
+        status:'error',
+        message:'This feature not define yet!'
+    })
+}
+const updateUser = (req,res) =>{
+    res.status(500).json({
+        status:'error',
+        message:'This feature not define yet!'
+    })
+}
+const deleteUser = (req,res) =>{
+    res.status(500).json({
+        status:'error',
+        message:'This feature not define yet!'
+    })
+}
 app.route('/api/v1/tours')
     .get(getAllTours)
     .post(createTour)
@@ -88,6 +118,15 @@ app.route('/api/v1/tours/:id')
     .get(getTour)
     .patch(updateTour)
     .delete(deleteTour)
+
+app.route('/api/v1/users')
+    .get(getAllUsers)
+    .post(createUser)
+
+app.route('/api/v1/users/:id')
+    .get(getUser)
+    .patch(updateUser)
+    .delete(deleteUser)
 
 const port = 3000
 app.listen(port, () => {
