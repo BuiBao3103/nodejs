@@ -80,54 +80,60 @@ const deleteTour = (req, res) => {
     })
 }
 
-const getAllUsers = (req,res) =>{
+const getAllUsers = (req, res) => {
     res.status(500).json({
-        status:'error',
-        message:'This feature not define yet!'
+        status: 'error',
+        message: 'This feature not define yet!'
     })
 }
-const getUser = (req,res) =>{
+const getUser = (req, res) => {
     res.status(500).json({
-        status:'error',
-        message:'This feature not define yet!'
+        status: 'error',
+        message: 'This feature not define yet!'
     })
 }
-const createUser = (req,res) =>{
+const createUser = (req, res) => {
     res.status(500).json({
-        status:'error',
-        message:'This feature not define yet!'
+        status: 'error',
+        message: 'This feature not define yet!'
     })
 }
-const updateUser = (req,res) =>{
+const updateUser = (req, res) => {
     res.status(500).json({
-        status:'error',
-        message:'This feature not define yet!'
+        status: 'error',
+        message: 'This feature not define yet!'
     })
 }
-const deleteUser = (req,res) =>{
+const deleteUser = (req, res) => {
     res.status(500).json({
-        status:'error',
-        message:'This feature not define yet!'
+        status: 'error',
+        message: 'This feature not define yet!'
     })
 }
-app.route('/api/v1/tours')
+
+const tourRouter = express.Router()
+const userRouter = express.Router()
+
+tourRouter.route('/')
     .get(getAllTours)
     .post(createTour)
 
-app.route('/api/v1/tours/:id')
+tourRouter.route('/:id')
     .get(getTour)
     .patch(updateTour)
     .delete(deleteTour)
 
-app.route('/api/v1/users')
+userRouter.route('/a')
     .get(getAllUsers)
     .post(createUser)
 
-app.route('/api/v1/users/:id')
+userRouter.route('/:id')
     .get(getUser)
     .patch(updateUser)
     .delete(deleteUser)
 
+app.use('/api/v1/tours', tourRouter)
+app.use('/api/v1/users', userRouter)
 const port = 3000
 app.listen(port, () => {
     console.log(`App running on port ${port}...`)
