@@ -7,9 +7,18 @@ exports.getAllTours = async (req, res) => {
         const excludedFields = ['page', 'sort', 'limit', 'fields']
         excludedFields.forEach(el => delete queryObj[el])
 
+        //(1)filtering
         let queryStr = JSON.stringify(queryObj)
         queryStr = queryStr.replace(/\b(lt|lte|gt|gte)\b/g, match => `$${match}`)
         const query = Tour.find(JSON.parse(queryStr))
+
+        //(2)sort
+        if (req.query.sort) {
+            const sortBy = red.query.sort.split(',').join(' ')
+            query = query.sort(sortBy)
+        } else {
+            query = query.sort('-createdAt')
+        }
         //EXECUTE QUERY
         const tours = await query
 
