@@ -7,6 +7,9 @@ const route = express.Router()
 route.route('/top-5-cheap')
     .get(tourController.aliasTopTours, tourController.getAllTours)
 
+route.route('/tour-stats')
+    .get(tourController.getTourStats)
+
 route.route('/')
     .get(tourController.getAllTours)
     .post(tourController.createTour)
