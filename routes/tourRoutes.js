@@ -10,6 +10,8 @@ route.route('/top-5-cheap')
 route.route('/tour-stats')
     .get(tourController.getTourStats)
 
+route.route('/monthly-plan/:year')
+    .get(tourController.getMonthlyPlan)
 route.route('/')
     .get(tourController.getAllTours)
     .post(tourController.createTour)
