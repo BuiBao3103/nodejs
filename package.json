@@ -5,8 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
-    "debug":"ndb server.js"
+    "start": "set NODE_ENV=development&&nodemon server.js",
+    "production": "set NODE_ENV=production&&nodemon server.js",
+    "debug": "ndb server.js"
   },
   "repository": {
     "type": "git",
