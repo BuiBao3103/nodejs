@@ -7,7 +7,12 @@ route.route('/signup')
     .post(authController.signup)
 route.route('/login')
     .post(authController.login)
-    
+
+route.route('/forgotPassword')
+    .post(authController.forgotPassword)
+route.route('/resetPassword/:id')
+    .patch(authController.resetPassword)
+
 route.route('/')
     .get(userController.getAllUsers)
     .post(userController.createUser)
