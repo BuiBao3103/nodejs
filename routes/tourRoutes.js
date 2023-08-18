@@ -7,19 +7,20 @@ const route = express.Router()
 
 route.route('/top-5-cheap')
     .get(tourController.aliasTopTours, tourController.getAllTours)
-
 route.route('/tour-stats')
     .get(tourController.getTourStats)
 
 route.route('/monthly-plan/:year')
     .get(tourController.getMonthlyPlan)
 route.route('/')
-    .get(authController.protect, tourController.getAllTours)
+    .get(authController.protect,
+        tourController.getAllTours)
     .post(tourController.createTour)
-
 route.route('/:id')
     .get(tourController.getTour)
     .patch(tourController.updateTour)
-    .delete(tourController.deleteTour)
+    .delete(authController.protect,
+        authController.restrictTo('admin', 'lead-guide'),
+        tourController.deleteTour)
 
 module.exports = route
