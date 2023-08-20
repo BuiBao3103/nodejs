@@ -10,7 +10,7 @@ route.route('/login')
 
 route.route('/forgotPassword')
     .post(authController.forgotPassword)
-route.route('/resetPassword/:id')
+route.route('/resetPassword/:token')
     .patch(authController.resetPassword)
 
 route.route('/')
