@@ -19,6 +19,7 @@ app.use('/api', limiter)
 app.use(express.json({ limit: '10kb' }))
 //Serving static files
 app.use(express.static(`${__dirname}/public`))
+//Routes
 app.use('/api/v1/tours', tourRouter)
 app.use('/api/v1/users', userRouter)
 app.all('*', (req, res, next) => {
