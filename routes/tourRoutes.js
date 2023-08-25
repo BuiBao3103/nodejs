@@ -1,9 +1,13 @@
 const express = require('express')
 const tourController = require('./../controllers/tourController')
 const authController = require('./../controllers/authController')
+const reviewRoute = require('./reviewRoutes')
 const route = express.Router()
 
 // route.param('id', tourController.checkID)
+
+route.use('/:tourId.reviews', reviewRoute)
+
 
 route.route('/top-5-cheap')
     .get(tourController.aliasTopTours, tourController.getAllTours)
