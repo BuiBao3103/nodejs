@@ -9,4 +9,9 @@ route.route('/')
         authController.restrictTo('user'),
         reviewController.createReview)
 
+route.route('/:id')
+    .delete(authController.protect,
+        authController.restrictTo('admin'),
+        reviewController.deleteReview)
+
 module.exports = route

@@ -1,6 +1,7 @@
 const User = require('./../models/userModel')
 const catchAsync = require('./../utils/catchAsync')
 const AppError = require('./../utils/appError')
+const factory = require('./handleFactory')
 const filterObj = (obj, ...allowedFields) => {
     const newObj = {}
     Object.keys(obj).forEach(el => {
@@ -67,9 +68,4 @@ exports.updateUser = (req, res) => {
         message: 'This feature not define yet!'
     })
 }
-exports.deleteUser = (req, res) => {
-    res.status(500).json({
-        status: 'error',
-        message: 'This feature not define yet!'
-    })
-}
+exports.deleteUser = factory.deleteOne(User)

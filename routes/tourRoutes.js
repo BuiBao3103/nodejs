@@ -6,7 +6,7 @@ const route = express.Router()
 
 // route.param('id', tourController.checkID)
 
-route.use('/:tourId.reviews', reviewRoute)
+route.use('/:tourId/reviews', reviewRoute)
 
 
 route.route('/top-5-cheap')
