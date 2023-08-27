@@ -15,14 +15,20 @@ route.route('/tour-stats')
     .get(tourController.getTourStats)
 
 route.route('/monthly-plan/:year')
-    .get(tourController.getMonthlyPlan)
-route.route('/')
     .get(authController.protect,
-        tourController.getAllTours)
-    .post(tourController.createTour)
+        authController.restrictTo('admin', 'lead-guide', 'guide'),
+        tourController.getMonthlyPlan)
+
+route.route('/')
+    .get(tourController.getAllTours)
+    .post(authController.protect,
+        authController.restrictTo('admin', 'lead-guide'),
+        tourController.createTour)
 route.route('/:id')
     .get(tourController.getTour)
-    .patch(tourController.updateTour)
+    .patch(authController.protect,
+        authController.restrictTo('admin', 'lead-guide'),
+        tourController.updateTour)
     .delete(authController.protect,
         authController.restrictTo('admin', 'lead-guide'),
         tourController.deleteTour)

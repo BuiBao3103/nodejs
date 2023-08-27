@@ -3,28 +3,23 @@ const userController = require('../controllers/userController')
 const authController = require('../controllers/authController')
 const route = express.Router()
 
-route.route('/signup')
-    .post(authController.signup)
-route.route('/login')
-    .post(authController.login)
+route.route('/signup').post(authController.signup)
+route.route('/login').post(authController.login)
+route.route('/forgotPassword').post(authController.forgotPassword)
+route.route('/resetPassword/:token').patch(authController.resetPassword)
 
-route.route('/forgotPassword')
-    .post(authController.forgotPassword)
-route.route('/resetPassword/:token')
-    .patch(authController.resetPassword)
+//protect all routes after this middleware
+route.use(authController.protect)
+
 route.route('/me')
-    .get(authController.protect,
-        userController.getMe,
+    .get(userController.getMe,
         userController.getUser)
-route.route('/updateMyPassword')
-    .patch(authController.protect,
-        authController.updatePassword)
-route.route('/updateMe')
-    .patch(authController.protect,
-        userController.updateMe)
-route.route('/deleteMe')
-    .delete(authController.protect,
-        userController.deleteMe)
+route.route('/updateMyPassword').patch(authController.updatePassword)
+route.route('/updateMe').patch(userController.updateMe)
+route.route('/deleteMe').delete(userController.deleteMe)
+
+route.use(authController.restrictTo('admin'))
+
 route.route('/')
     .get(userController.getAllUsers)
     .post(userController.createUser)
