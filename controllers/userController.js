@@ -62,10 +62,5 @@ exports.createUser = (req, res) => {
         message: 'This feature not define yet!'
     })
 }
-exports.updateUser = (req, res) => {
-    res.status(500).json({
-        status: 'error',
-        message: 'This feature not define yet!'
-    })
-}
+exports.updateUser = factory.updateOne(User)
 exports.deleteUser = factory.deleteOne(User)
