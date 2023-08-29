@@ -70,12 +70,13 @@ exports.getAll = Model => catchAsync(async (req, res, next) => {
     //To allow for nested GET
     let filter = {}
     if (req.params.tourId) filter = { 'tour': req.params.tourId }
-    
+
     const features = new APIFeatures(Model.find(filter), req.query)
         .filter()
         .sort()
         .limitFields()
         .pagination();
+    // const doc = await features.query.explain();
     const doc = await features.query;
     //SEND RESPONSE
     res.status(200).json({
