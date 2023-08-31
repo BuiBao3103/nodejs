@@ -22,6 +22,9 @@ route.route('/monthly-plan/:year')
 route.route('/tours-within/:distance/center/:latlng/unit/:unit')
     .get(tourController.getToursWithin)
 
+route.route('/distances/:latlng/unit/:unit')
+    .get(tourController.getDistances)
+    
 route.route('/')
     .get(tourController.getAllTours)
     .post(authController.protect,
