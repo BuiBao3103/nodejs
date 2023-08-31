@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 const rateLimit = require('express-rate-limit')
 const helmet = require('helmet')
@@ -11,6 +12,13 @@ const tourRouter = require('./routes/tourRoutes')
 const userRouter = require('./routes/userRoutes')
 const reviewRoute = require('./routes/reviewRoutes')
 const app = express()
+
+app.set('view engine', 'pug')
+app.set('views', path.join(__dirname, 'views'))
+
+//GLOBAL MIDDLEWARE
+//Serving static files
+app.use(express.static(path.join(__dirname, 'public')))
 //Set security HTTP headers
 app.use(helmet())
 //Limit requests from same API
@@ -37,9 +45,11 @@ app.use(hpp({
         'price']
 }))
 
-//Serving static files
-app.use(express.static(`${__dirname}/public`))
-//Routes
+
+//ROUTES
+app.get('/', (req, res) => {
+    res.status(200).render('base')
+})
 app.use('/api/v1/tours', tourRouter)
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/reviews', reviewRoute)
