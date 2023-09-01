@@ -2,5 +2,9 @@
     "cSpell.words": [
         "errmsg",
         "natour"
-    ]
+    ],
+    "lldb.showDisassembly": "auto",
+    "lldb.dereferencePointers": true,
+    "lldb.consoleMode": "commands",
+    "compile-hero.disable-compile-files-on-did-save-code": false
 }
