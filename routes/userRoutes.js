@@ -5,6 +5,7 @@ const route = express.Router()
 
 route.route('/signup').post(authController.signup)
 route.route('/login').post(authController.login)
+route.route('/logout').get(authController.logout)
 route.route('/forgotPassword').post(authController.forgotPassword)
 route.route('/resetPassword/:token').patch(authController.resetPassword)
 
