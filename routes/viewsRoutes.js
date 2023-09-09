@@ -8,4 +8,5 @@ route.use(authController.isLoggedIn)
 route.get('/', viewsController.getOverview)
 route.get('/tour/:slug', viewsController.getTour)
 route.get('/login', viewsController.getLoginForm)
+route.get('/register',viewsController.getRegisterForm)
 module.exports = route
