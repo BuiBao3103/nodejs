@@ -37,3 +37,9 @@ exports.getRegisterForm = (req, res) => {
     title: 'register'
   })
 }
+
+exports.getAccount = (req, res) => {
+  res.status(200).render('account', {
+    title: 'your account'
+  })
+}

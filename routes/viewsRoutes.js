@@ -3,10 +3,10 @@ const viewsController = require('./../controllers/viewsController')
 const route = express.Router()
 const authController = require('./../controllers/authController')
 
-route.use(authController.isLoggedIn)
 
-route.get('/', viewsController.getOverview)
-route.get('/tour/:slug', viewsController.getTour)
-route.get('/login', viewsController.getLoginForm)
-route.get('/register',viewsController.getRegisterForm)
+route.get('/', authController.isLoggedIn, viewsController.getOverview)
+route.get('/tour/:slug', authController.isLoggedIn, viewsController.getTour)
+route.get('/login', authController.isLoggedIn, viewsController.getLoginForm)
+route.get('/register', authController.isLoggedIn, viewsController.getRegisterForm)
+route.get('/me', authController.protect, viewsController.getAccount)
 module.exports = route
