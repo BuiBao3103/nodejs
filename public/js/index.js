@@ -2,12 +2,14 @@ import '@babel/polyfill'
 import { displayMap } from './mapbox'
 import { login, logout } from './login'
 import { register } from './register'
+import { updateData } from './updateSettings'
 
 //DOM ELEMENTS
 const mapBox = document.getElementById('map')
-const loginForm = document.querySelector('.formLogin')
-const registerForm = document.querySelector('.formRegister')
+const loginForm = document.querySelector('.form--login')
+const registerForm = document.querySelector('.form--register')
 const logOutBtn = document.querySelector('.nav__el--logout')
+const userDataForm = document.querySelector('.form-user-data')
 
 
 //DELEGATION
@@ -36,5 +38,15 @@ if (registerForm) {
   })
 }
 
-if (logOutBtn)
+if (logOutBtn) {
   logOutBtn.addEventListener('click', logout)
+}
+
+if (userDataForm) {
+  userDataForm.addEventListener('submit', e => {
+    e.preventDefault()
+    const name = document.getElementById('name').value
+    const email = document.getElementById('email').value
+    updateData(name, email)
+  })
+}

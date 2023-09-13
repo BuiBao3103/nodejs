@@ -22,17 +22,15 @@ app.set('views', path.join(__dirname, 'views'))
 //Serving static files
 app.use(express.static(path.join(__dirname, 'public')))
 //Set security HTTP headers
-app.use(helmet(
-    {
-        contentSecurityPolicy:
-        {
-            useDefaults: true,
-            directives:
-            {
-                'script-src': ["'self'", "https://cdnjs.cloudflare.com"]
-            }
-        }
-    }))
+app.use(helmet({
+    contentSecurityPolicy: false
+    // {
+    //     directives: {
+    //         "script-src": ["'self'", 'https://fonts.googleapis.com'],
+    //         "style-src": null,
+    //     },
+    // },
+}))
 //Limit requests from same API
 const limiter = rateLimit({
     max: 100,
